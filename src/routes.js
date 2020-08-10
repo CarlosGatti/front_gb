@@ -29,20 +29,14 @@ import Lock from "views/pages/Lock.jsx";
 import Schedule from "views/schedule/Schedule";
 import TimeSheet from "views/schedule/TimeSheet";
 import Download from "views/support/Download.jsx";
-
 import BackOffice from "views/schedule/BackOffice";
-
 import Execution from "views/schedule/Execution";
-
 import Gallery from "views/gallery/Gallery";
 import Profile from "views/user/Profile";
-
-
 import Customer from "views/sales/Customer.jsx";
 import Project from "views/sales/Project";
 import FollowUp from "views/sales/FollowUp";
 import TimeLine from "views/sales/Timeline";
-
 
 const routes = [
   {
@@ -141,8 +135,6 @@ const routes = [
 
     ]
   },
-
-
   {
     collapse: true,
     name: "Sales",
@@ -189,11 +181,6 @@ const routes = [
       },
     ]
   },
-
-
-
-
-
   {
     collapse: true,
     name: "Gallery",
@@ -232,9 +219,6 @@ const routes = [
       },   
     ]
   },
-
-
 ];
-
 
 export default routes;

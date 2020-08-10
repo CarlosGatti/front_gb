@@ -45,7 +45,7 @@ class Dashboard extends React.Component {
     this.GetAllProjects = this.GetAllProjects.bind(this);
   }
 
-  
+
   GetAllProjects(evento) {
     axios.get('http://localhost:5000/api/sales/getallprojects')
       .then(res => {
@@ -79,36 +79,38 @@ class Dashboard extends React.Component {
               <h5 className="title">JOB PROGRESS</h5>
             </CardHeader>
             <hr></hr>
+            <div class="row">
             {
               this.state.dataProjects.map(function (events) {
                 return (
-                  <CardBody>
-                    <CardTitle>Customer Name: {events.Name} </CardTitle>
-                    <CardSubtitle className="mb-2 text-muted">Project: {events.Type}</CardSubtitle>
-                    <CardText>Last Contact: <Moment format="YYYY-MM-DD" date={events.DateContact} /></CardText>
-                    <CardText>Type: {events.Type}</CardText>
-                    <CardText>City: {events.City}</CardText>
-                    <blockquote className="blockquote">
-                      <CardText>Status: {events.Status}</CardText>
-                    </blockquote>
+            
+                    <div class="col-md-6 col-lg-4">
 
-                    <Link to={`/admin/timeline/?id=${events.ProjectId}`}>
-                      Check Timeline
+
+                      <CardBody key={events.CustomerId}>
+                        <CardTitle>Customer Name: {events.Name} </CardTitle>
+                        <CardSubtitle className="mb-2 text-muted">Project: {events.Type}</CardSubtitle>
+                        <CardText>Last Contact: <Moment format="YYYY-MM-DD HH:mm" date={events.DateContact} /></CardText>
+                        <CardText>Type: {events.Type}</CardText>
+                        <CardText>City: {events.City}</CardText>
+
+                        <blockquote className="blockquote">
+                          {events.Status != null && <CardText>Status: {events.Status}</CardText>}
+                          {events.Status == null && <CardText>Status: Pending First Contact</CardText>}
+                        </blockquote>
+
+                        <Link to={`/admin/timeline/?id=${events.ProjectId}`}>
+                          Check Timeline
                     </Link>
-                  </CardBody>
+                      </CardBody>
 
+                    </div>
+              
                 );
               })
             }
+                </div>
           </Card>
-
-
-
-
-
-
-
-
 
 
 

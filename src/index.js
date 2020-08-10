@@ -5,7 +5,6 @@ import { Router, Route, Switch, Redirect } from "react-router-dom";
 import AuthLayout from "layouts/Auth/Auth.jsx";
 import AdminLayout from "layouts/Admin/Admin.jsx";
 import RTLLayout from "layouts/RTL/RTL.jsx";
-
 import "assets/css/nucleo-icons.css";
 import "assets/scss/black-dashboard-pro-react.scss?v=1.0.0";
 import "assets/demo/demo.css";
@@ -21,7 +20,6 @@ function verificaAutenticacao(nextState, replace) {
 }
 
 ReactDOM.render(
-
   <Router history={hist}>
     <Switch>
       <Route path="/auth" render={props => <AuthLayout {...props} />} />
@@ -30,7 +28,6 @@ ReactDOM.render(
       <Redirect from="/" to="/auth/login" />
     </Switch>
   </Router>,
-
   document.getElementById("root")
 );
 
