@@ -1,9 +1,11 @@
 import React from "react";
 import axios from "axios";
+import moment from "moment";
 import SweetAlert from 'react-bootstrap-sweetalert';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import Datetime from 'react-datetime';
 
+import ReactDatetime from "react-datetime";
 // reactstrap components
 import {
     Card,
@@ -31,12 +33,13 @@ class FollowUp extends React.Component {
         this.state = {
 
             dataFollowUp: [],
-            DateContact: '',
+            DateContact: moment(),
             Desc: '',
             Status: '',
 
             alert: null,
             validation: '',
+
         };
 
         //set bind variables
@@ -44,11 +47,11 @@ class FollowUp extends React.Component {
         this.setDesc = this.setDesc.bind(this);
         this.setStatus = this.setStatus.bind(this);
 
-        
+
 
         //events
         this.CreateFollowUp = this.CreateFollowUp.bind(this);
-
+        this.onRowClick = this.onRowClick.bind(this);
 
 
         //alerts
@@ -60,7 +63,8 @@ class FollowUp extends React.Component {
 
     //set variables
     setDateContact(props) {
-        this.setState({ DateContact: props.target.value });
+        console.log(moment(props));
+        this.setState({ DateContact: moment(props) });
     };
 
     setDesc(props) {
@@ -71,13 +75,14 @@ class FollowUp extends React.Component {
         this.setState({ Status: props.target.value });
     };
 
-    
+
     //select the customer
     onRowClick(row) {
         console.log(row);
         this.setState({
-           // Name: row.Name,
-
+            Name: row.Name,
+            Type: row.Type,
+            ProjectId: row.ProjectId
         });
     }
 
@@ -92,6 +97,7 @@ class FollowUp extends React.Component {
     //clear form
     clearImputs() {
         this.setState({
+            ProjectId: '',
             DateContact: '',
             Status: '',
             Desc: '',
@@ -100,7 +106,7 @@ class FollowUp extends React.Component {
 
     //select all customers in database
     SelectAllCustomer(evento) {
-        axios.get('http://localhost:5000/api/sales/getallprojectscustomer')
+        axios.get('http://localhost:5000/api/sales/getallprojects')
             .then(res => {
                 this.setState({ dataCustomers: res.data });
                 console.log(res.data);
@@ -111,18 +117,15 @@ class FollowUp extends React.Component {
             });
     };
 
-    //create customer
     CreateFollowUp(evento) {
-        var projectCreate = {
-            CustomerId: this.state.CustomerId,
-            Type: this.state.Type,
-            Address: this.state.Address,
-            City: this.state.City,
-            Country: this.state.Country,
-            ZipCode: this.state.ZipCode,
-            Complement: this.state.Complement,
+        var followUpCreate = {
+            ProjectId: this.state.ProjectId,
+            DateContact: this.state.DateContact,
+            Status: this.state.Status,
+            Desc: this.state.Desc,
         }
-        axios.post('http://localhost:5000/api/sales/create/projectandaddress', projectCreate)
+
+        axios.post('http://localhost:5000/api/sales/create/followup', followUpCreate)
             .then(res => {
 
                 console.log("User Created");
@@ -131,8 +134,10 @@ class FollowUp extends React.Component {
                 return res.json();
             })
             .catch(error => {
-                this.setState({ validation: error.response.data[0].msg });
-                console.log(error.response.data[0].msg);
+                if (error.response && error.response.data) {
+                    this.setState({ validation: error.response.data[0].msg });
+                    console.log(error.response.data[0].msg);
+                }
             });
     };
 
@@ -150,7 +155,7 @@ class FollowUp extends React.Component {
                     onCancel={() => this.hideAlert()}
                     confirmBtnBsStyle="info"
                 >
-                    Project created successfully!
+                    FollowUp created successfully!
                 </SweetAlert>
             )
         });
@@ -167,7 +172,7 @@ class FollowUp extends React.Component {
                     onCancel={() => this.hideAlert()}
                     confirmBtnBsStyle="info"
                 >
-                    Project updated successfully!
+                    FollowUp updated successfully!
                 </SweetAlert>
             )
         });
@@ -184,7 +189,7 @@ class FollowUp extends React.Component {
                     onCancel={() => this.hideAlert()}
                     confirmBtnBsStyle="info"
                 >
-                    Project deleted successfully!
+                    FollowUp deleted successfully!
                 </SweetAlert>
             )
         });
@@ -259,6 +264,30 @@ class FollowUp extends React.Component {
                                                         />
                                                     </FormGroup>
                                                 </Col>
+
+                                                <Col md="4">
+                                                    <FormGroup>
+                                                        <label>Id Project</label>
+                                                        <Input
+                                                            placeholder="Select Project"
+                                                            type="text"
+                                                            value={this.state.ProjectId}
+                                                            disabled
+                                                        />
+                                                    </FormGroup>
+                                                </Col>
+
+                                                <Col md="4">
+                                                    <FormGroup>
+                                                        <label>Id Timeline</label>
+                                                        <Input
+                                                            placeholder="Select Project"
+                                                            type="text"
+                                                            value={this.state.ProjectId}
+                                                            disabled
+                                                        />
+                                                    </FormGroup>
+                                                </Col>
                                             </Row>
                                         </blockquote>
 
@@ -272,13 +301,20 @@ class FollowUp extends React.Component {
                                             <Col md="12">
                                                 <FormGroup>
                                                     <label>Date Contact</label>
-                                                    <Datetime
-                                                        timeFormat={false}
-                                                        inputProps={{ placeholder: "Datetime Contact" }}
-                                                        value={this.DateContact}
+                                                    <ReactDatetime
+                                                        inputProps={{
+                                                            className: "form-control",
+                                                            placeholder: "Date Contact",
+                                                        }}
+                                                        id="DateContact"
+                                                        name="DateContact"
+                                                        value={this.state.DateContact}
                                                         onChange={this.setDateContact}
                                                     />
                                                 </FormGroup>
+
+
+
                                             </Col>
 
 
@@ -318,7 +354,7 @@ class FollowUp extends React.Component {
 
 
                                         </Row>
-                                        
+
                                         <Row>
                                             <Col className="pr-md-1" md="12">
                                                 <FormGroup>
@@ -330,7 +366,7 @@ class FollowUp extends React.Component {
                                 </CardBody>
                                 <CardFooter>
 
-                                    <Button className="btn-fill" color="success" type="submit" onClick={this.CreateProject}>
+                                    <Button className="btn-fill" color="success" type="submit" onClick={this.CreateFollowUp}>
                                         Save
                                     </Button>
 
@@ -359,6 +395,7 @@ class FollowUp extends React.Component {
                                         <TableHeaderColumn dataField='Name'>Customer Name</TableHeaderColumn>
                                         <TableHeaderColumn dataField='Type'>Type Project</TableHeaderColumn>
                                         <TableHeaderColumn dataField='City'>City</TableHeaderColumn>
+                                        <TableHeaderColumn dataField='Status'>Status</TableHeaderColumn>
                                     </BootstrapTable>
                                 </CardBody>
                             </Card>

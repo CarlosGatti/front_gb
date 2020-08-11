@@ -382,12 +382,12 @@ class BackOffice extends React.Component {
         });
     }
 
-    createTeam(){
+    createTeam() {
 
         var team = {
             id: this.state.installersGroupsUserListInstaller,
             ExecutionId: this.state.ExecutionId,
-            
+
         }
         client.mutate({
             mutation: createTeam,
@@ -599,10 +599,6 @@ class BackOffice extends React.Component {
                                             </FormGroup>
                                         </Collapse>
                                     </blockquote>
-
-
-
-
 
                                     <blockquote className="blockquote">
 
@@ -1154,7 +1150,7 @@ class BackOffice extends React.Component {
                                     </FormGroup>
 
 
- 
+
 
                                     <label>Date Start Execution</label>
                                     <FormGroup>
@@ -1188,7 +1184,7 @@ class BackOffice extends React.Component {
                                         <textarea className="form-control" type="text" value={this.state.InstallerNote} onChange={this.setInstallerNote} />
                                     </FormGroup>
 
-        
+
                                 </blockquote>
 
 
@@ -1197,7 +1193,7 @@ class BackOffice extends React.Component {
 
 
                                 <blockquote className="blockquote">
-                                <label>Team</label>
+                                    <label>Team</label>
                                     <FormGroup>
                                         <MultiSelect
                                             options={optionsGroupsUserListInstaller}

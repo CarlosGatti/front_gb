@@ -152,12 +152,12 @@ class Timeline extends React.Component {
 
 
 
-                          <li className={events.Status == "Walk Thru" && "timeline-inverted" 
-                                      || events.Status == "Proposal" && "timeline-inverted" 
-                                      || events.Status == "Permit" && "timeline-inverted" 
-                                      || events.Status == "Execution" && "timeline-inverted" 
-                                      || events.Status == "Fill Paperwork" && "timeline-inverted"}>
-                            
+                          <li className={events.Status == "Walk Thru" && "timeline-inverted"
+                            || events.Status == "Proposal" && "timeline-inverted"
+                            || events.Status == "Permit" && "timeline-inverted"
+                            || events.Status == "Execution" && "timeline-inverted"
+                            || events.Status == "Fill Paperwork" && "timeline-inverted"}>
+
 
 
                             {events.Status == "Walk Thru" && <div className="timeline-badge danger"><i className="tim-icons icon-planet" /></div>}
@@ -196,8 +196,14 @@ class Timeline extends React.Component {
                               <h6>
                                 <i className="ti-time" />
                                 <Moment format="YYYY-MM-DD HH:mm" date={events.DateContact} />
-                   
                               </h6>
+
+
+                          
+
+                         
+                      
+
                             </div>
                           </li>
 

@@ -3,7 +3,6 @@ import axios from "axios";
 import SweetAlert from 'react-bootstrap-sweetalert';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 
-
 // reactstrap components
 import {
     Card,
