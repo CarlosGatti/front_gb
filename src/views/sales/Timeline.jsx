@@ -147,18 +147,11 @@ class Timeline extends React.Component {
                     {
                       this.state.dataTimeline.map(function (events) {
                         return (
-
-
-
-
-
                           <li className={events.Status == "Walk Thru" && "timeline-inverted"
                             || events.Status == "Proposal" && "timeline-inverted"
                             || events.Status == "Permit" && "timeline-inverted"
                             || events.Status == "Execution" && "timeline-inverted"
                             || events.Status == "Fill Paperwork" && "timeline-inverted"}>
-
-
 
                             {events.Status == "Walk Thru" && <div className="timeline-badge danger"><i className="tim-icons icon-planet" /></div>}
                             {events.Status == "Subcontract Estimate" && <div className="timeline-badge info"><i className="tim-icons icon-cart" /></div>}
@@ -167,15 +160,11 @@ class Timeline extends React.Component {
                             {events.Status == "Permit" && <div className="timeline-badge info"><i className="tim-icons icon-paper" /></div>}
                             {events.Status == "Schedule Execution" && <div className="timeline-badge success"><i className="tim-icons icon-calendar-60" /></div>}
                             {events.Status == "Execution" && <div className="timeline-badge danger"><i className="tim-icons icon-notes" /></div>}
-                            {events.Status == "Final Walk Thru " && <div className="timeline-badge info"><i className="tim-icons icon-camera-18" /></div>}
+                            {events.Status == "Final Walk Thru" && <div className="timeline-badge info"><i className="tim-icons icon-camera-18" /></div>}
                             {events.Status == "Fill Paperwork" && <div className="timeline-badge success"><i className="tim-icons icon-satisfied" /></div>}
-
 
                             <div className="timeline-panel">
                               <div className="timeline-heading">
-
-
-
                                 {events.Status == "Walk Thru" && <Badge color="danger" pill> {events.Status}</Badge>}
                                 {events.Status == "Subcontract Estimate" && <Badge color="info" pill> {events.Status}</Badge>}
                                 {events.Status == "Proposal" && <Badge color="success" pill> {events.Status}</Badge>}
@@ -183,10 +172,8 @@ class Timeline extends React.Component {
                                 {events.Status == "Permit" && <Badge color="info" pill> {events.Status}</Badge>}
                                 {events.Status == "Schedule Execution" && <Badge color="success" pill> {events.Status}</Badge>}
                                 {events.Status == "Execution" && <Badge color="danger" pill> {events.Status}</Badge>}
-                                {events.Status == "Final Walk Thru " && <Badge color="info" pill> {events.Status}</Badge>}
+                                {events.Status == "Final Walk Thru" && <Badge color="info" pill> {events.Status}</Badge>}
                                 {events.Status == "Fill Paperwork" && <Badge color="success" pill> {events.Status}</Badge>}
-
-
                               </div>
                               <div className="timeline-body">
                                 <p>
@@ -199,60 +186,9 @@ class Timeline extends React.Component {
                               </h6>
 
 
-                          
-
-                         
-                      
 
                             </div>
                           </li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         );
                       })
                     }
@@ -263,9 +199,6 @@ class Timeline extends React.Component {
               </Card>
             </Col>
           </Row>
-
-
-
         </div>
       </>
     );

@@ -106,6 +106,10 @@ class FollowUp extends React.Component {
 
     //select all customers in database
     SelectAllCustomer(evento) {
+
+
+
+        
         axios.get('http://localhost:5000/api/sales/getallprojects')
             .then(res => {
                 this.setState({ dataCustomers: res.data });

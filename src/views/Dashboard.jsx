@@ -99,15 +99,8 @@ class Dashboard extends React.Component {
                           {events.Status == null && <CardText>Status: Pending First Contact</CardText>}
                         </blockquote>
 
-                      
-
-
-                        {events.ProjectId != null &&   <Link to={`/admin/timeline/?id=${events.ProjectId}`}>Check Timeline</Link>}
-
-                         
-                      
-
-
+                        {events.Status != null &&   <Link to={`/admin/timeline/?id=${events.ProjectId}`}>Check Timeline</Link>}
+                                
                       </CardBody>
 
                     </div>
